@@ -4,25 +4,10 @@
     <mdc-top-app-bar-action class="Helpbutton_upright" icon="more_vert"></mdc-top-app-bar-action>
   </mdc-top-app-bar>
   <mdc-list class="ry7EKIDo9Q" bordered two-line interactive>
-    <mdc-list-item class="item1">List item A</mdc-list-item>
-
-    <mdc-list-item class="item2">List item B</mdc-list-item>
-
-    <mdc-list-item class="item3">List item C</mdc-list-item>
-
-    <mdc-list-item class="item4">List item D</mdc-list-item>
-
-    <mdc-list-item class="item5">List item E</mdc-list-item>
-
-    <mdc-list-item class="item6">List item F</mdc-list-item>
-
-    <mdc-list-item class="item7">List item G</mdc-list-item>
-
-    <mdc-list-item class="item8">List item H</mdc-list-item>
-
-    <mdc-list-item class="item9">List item I</mdc-list-item>
-
-    <mdc-list-item class="item10">List item J</mdc-list-item>
+    <mdc-list-item v-for="item in items" v-on:click="GoToPageLink(item)">
+        {{ item.headline }}
+        {{ item.subheading }}
+    </mdc-list-item>
   </mdc-list>
   <mdc-fab class="FAB_refresh" icon="refresh"></mdc-fab>
 </div>
@@ -30,8 +15,35 @@
 
 <script>
 export default {
-  name: 'home'
+  name: 'home', // notre module
+  methods: { // tous les fonctions ..
+    
+        
+    GoToPageLink: function(i) {
+    window.open(i.link);
+    }
+    
+    
+  },
+  data () {
+    return { // tous les données ..
+    
+    
+      items: [
+        { 
+          headline: '10 Konzert-Highlights für die kalten Tage  -  ', 
+          subheading: 'Diese Musik darf man in Luzern nicht verpassen',
+          link: 'https://www.zentralplus.ch/de/news/kultur/5579039/10-Konzert-Highlights-f%C3%BCr-die-kalten-Tage.htm'
+        },
+        { message: 'Mozilla Firefox' },
+        { message: 'Micorosft Edge' }
+      ]
+      
+      
+    }
+  }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
