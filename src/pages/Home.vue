@@ -17,29 +17,44 @@
 export default {
   name: 'home', // notre module
   methods: { // tous les fonctions ..
-    
-        
+
+
     GoToPageLink: function(i) {
-    window.open(i.link);
+      window.open(i.link);
+    },
+
+
+    LoadData: function() {
+
+      var self = this;
+      var url = '/static/test-data.json';
+
+      // Ajax request
+      // get JSON (url)
+      // self.data.items = ...
+
+        var titleOfNewsHeadline = axios.get('/static/test-data.json/items/0/title');
+            
+
     }
-    
-    
+
+
   },
   data () {
     return { // tous les données ..
-    
-    
+
+
       items: [
-        { 
-          headline: '10 Konzert-Highlights für die kalten Tage  -  ', 
+        {
+          headline: titleOfNewsHeadline,
           subheading: 'Diese Musik darf man in Luzern nicht verpassen',
           link: 'https://www.zentralplus.ch/de/news/kultur/5579039/10-Konzert-Highlights-f%C3%BCr-die-kalten-Tage.htm'
         },
         { message: 'Mozilla Firefox' },
         { message: 'Micorosft Edge' }
       ]
-      
-      
+
+
     }
   }
 }
