@@ -1,12 +1,20 @@
 <template>
 <div id="BJgqjQDs5Q">
   <mdc-top-app-bar class="ByGVRrws5Q" title="Zentral+">
-    <mdc-top-app-bar-action class="Helpbutton_upright" icon="more_vert"></mdc-top-app-bar-action>
+    <mdc-top-app-bar-action class="Helpbutton_upright" icon="more_vert" v-on:click='MoreHelp'></mdc-top-app-bar-action>
   </mdc-top-app-bar>
   <mdc-list class="ry7EKIDo9Q" bordered two-line interactive>
     <mdc-list-item v-for="item in items" v-on:click="GoToPageLink(item)">
-        {{ item.title }}
-        {{ item.subheading }}
+      {{ item.title }}
+      <div class="item-type">
+        {{ item.type }}
+      </div>
+      <div class="secondInfo">
+        👁 {{ item.reads }}
+      </div>
+      <div class="thirdInfo">
+        🗨 {{ item.comments_count }}
+      </div>
     </mdc-list-item>
   </mdc-list>
   <mdc-fab class="FAB_refresh" icon="refresh" v-on:click="LoadData"></mdc-fab>
@@ -39,6 +47,7 @@ export default {
           console.log(response.data);
           self.items = response.data.items;
 
+
         })
 
     }
@@ -56,9 +65,10 @@ export default {
   },
   mounted () {
     this.LoadData();
-  }
 }
 
+
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -89,6 +99,33 @@ export default {
 .FAB_refresh {
   margin-right: 16dp;
   margin-bottom: 16dp;
+}
+
+.item-type {
+  background-color: #900000;
+  padding: 3px 5px;
+  color: #FFFFFF;
+  font-size: 100%;
+  margin-left: 1em;
+  border-radius: 2px;
+}
+
+.secondInfo {
+  background-color: #333333;
+  padding: 3px 5px;
+  color: #FFFFFF;
+  font-size: 100%;
+  margin-left: 0.5em;
+  border-radius: 2px;
+}
+
+.thirdInfo {
+  background-color: #DDDDDD;
+  padding: 3px 5px;
+  color: #333333;
+  font-size: 100%;
+  margin-left: 0.5em;
+  border-radius: 2px;
 }
 
 </style>
