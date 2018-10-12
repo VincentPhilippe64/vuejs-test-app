@@ -21,7 +21,8 @@ export default {
 
 
     GoToPageLink: function(i) {
-      window.open(i.link);
+      window.open(i.url);
+      console.log(i.url);
     },
 
 
@@ -37,6 +38,7 @@ export default {
         axios.get(url).then(function(response) {
           console.log(response.data);
           self.items = response.data.items;
+
         })
 
     }
@@ -51,6 +53,9 @@ export default {
 
 
     }
+  },
+  mounted () {
+    this.LoadData();
   }
 }
 
