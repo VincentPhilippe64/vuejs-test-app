@@ -5,15 +5,16 @@
   </mdc-top-app-bar>
   <mdc-list class="ry7EKIDo9Q" bordered two-line interactive>
     <mdc-list-item v-for="item in items" v-on:click="GoToPageLink(item)">
-        {{ item.headline }}
+        {{ item.title }}
         {{ item.subheading }}
     </mdc-list-item>
   </mdc-list>
-  <mdc-fab class="FAB_refresh" icon="refresh"></mdc-fab>
+  <mdc-fab class="FAB_refresh" icon="refresh" v-on:click="LoadData"></mdc-fab>
 </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'home', // notre module
   methods: { // tous les fonctions ..
@@ -33,8 +34,10 @@ export default {
       // get JSON (url)
       // self.data.items = ...
 
-        var titleOfNewsHeadline = axios.get('/static/test-data.json/items/0/title');
-            
+        axios.get(url).then(function(response) {
+          console.log(response.data);
+          self.items = response.data.items;
+        })
 
     }
 
@@ -44,15 +47,7 @@ export default {
     return { // tous les données ..
 
 
-      items: [
-        {
-          headline: titleOfNewsHeadline,
-          subheading: 'Diese Musik darf man in Luzern nicht verpassen',
-          link: 'https://www.zentralplus.ch/de/news/kultur/5579039/10-Konzert-Highlights-f%C3%BCr-die-kalten-Tage.htm'
-        },
-        { message: 'Mozilla Firefox' },
-        { message: 'Micorosft Edge' }
-      ]
+      items: []
 
 
     }
